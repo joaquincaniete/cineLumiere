@@ -1,35 +1,35 @@
 import React from "react";
+import CartWidget from "./CartWidget";
 
 const NavBar = ()=>{
     return(
         <header id="header">
-            <div className="center">
-                <div id="logo">
-                    <span id="brand"><strong>Cine Lumiere</strong> </span>
-                </div>
+            <nav className="nav">
+            <div id="logo" className="logo"><strong>Cine Lumiere</strong></div>
 
-            <nav id="menu">
-                <ul>
+                <ul className="menu">
                     <li>
-                    <a href="#">Inicio</a>
+                        <a href="#">Inicio</a>
                     </li>
                     <li>
-                    <a href="#">Estrenos</a>
+                        <a href="#">Estrenos</a>
                     </li>
                     <li>
-                    <a href="#">Ciclos de Peliculas</a>
+                        <a href="#">Ciclos de Peliculas</a>
                     </li>
                     <li>
-                    <a href="#">Proximamente</a>
+                        <a href="#">Proximamente</a>
                     </li>
                     <li>
-                    <a href="#"><strong>Login</strong></a>
+                        <a href="#"><strong>Login</strong></a>
                     </li>
                 </ul>
+                    <CartWidget />
+                    
+                    
+                
             </nav>
-            
-            </div>
-
+          
         </header>
     )
 }

@@ -1,7 +1,12 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
 body {
   text-align: center;
-  margin: 0px;
-  padding: 0px;
+
 
   /*FUENTES*/
   font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -10,73 +15,78 @@ body {
   -moz-osx-font-smoothing: antialiased;
 }
 
-#header {
-  display: flex;
-  justify-content: space-between;
-  height: 120px;
+header {
+  
+  height: 100px;
   width: 100%;
   background: white;
   border-bottom: 1px solid #ccc;
   border-top: 5px solid #61dafb;
 }
-
-.center{
-  width: 90%;
-  margin: 0px auto;
-}
-
-
-#logo {
-  width: 20%;
-  font-size: 30px;
-  margin-top: 35px;
-}
-
-#logo img {
-  display: block;
-  height: 60px;
-  margin-top: -9px;
-  margin-right: -10px;
-  
-}
-
-#brand {
-  display: block;
-  
-  margin: 0px;
-  
-}
-
-#menu{
-  
-  
+.nav{
   width: 100%;
-  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px;
+
+}
+.logo{
+  font-size: 25px;
+  color: black;
+  font-weight: 100;
 }
 
-#menu ul{  
-  line-height: 85px;
-  
+.menu{
+  display: flex;
 }
 
-#menu ul li{
+.menu li{
   display: inline-block;
   list-style: none;
-  height: 46px;
-  margin-left: 15px;
-  margin-right: 5px;
+  margin: 10px; 
+  
 }
 
-#menu ul li a{
+.menu li a{
   text-decoration: none;
-  color: #444;
+  color: black;
+  font-weight: bold;
   transition: 300ms all;
 }
 
 
-#menu a:hover{
-  color: #3cb2d3;
+.menu li a:hover{
+  padding: 5px 10px;
+  background: #61dafb;
+  color: blue;
+  border-radius: 15px;
+}
+.carrito{
+  list-style: none;
+  display: flex;
+
+  
+  margin: 0;
+  padding: 0;
+  
 }
 
+.imgCarrito{
+  display: inline-block;
+  width: 50px;
+  padding-right: 10px;
+  
+  
+}
+.nroItem{
+  text-align: center;
+  color: gray;
+  padding-top: 0;
+  padding-left: 5px;
+  padding-right: 10px;
+  border-radius: 20px;
+  background-color: red;
+}
 
   
