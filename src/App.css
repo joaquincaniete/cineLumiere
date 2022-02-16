@@ -90,10 +90,13 @@ header {
 }
 
 .itemCount{
-  margin: 10px;
+  margin-top: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 10px;
   background-color: white;
   width: 200px;
-  height: 100px;
+  height: 80px;
   border-radius: 5px;
   box-shadow: 2px;
     
@@ -104,12 +107,23 @@ header {
   color:black;
 }
 .itemCount button {
-  width: 50px;
+  width: 60px;
   border: 1px;
 
 }
 #largeButton{
+
+  height: auto;
   width: auto;
+  
+  
+}
+.imagen{
+
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
 }
   
