@@ -1,16 +1,18 @@
 import React from "react";
 import {useState, useEffect} from "react";
-import {ItemDetail, itemDetail} from "../components/ItemDetail"
+import ItemDetail from "../components/ItemDetail";
 import { useParams } from "react-router-dom";
 import { pelis, traerPeli, traerPelis } from "../mock/pelis";
 
-export const ItemDetailContainer = ({greetings})=>{
+export const ItemDetailContainer = ()=>{
 
     const [peliculas, setPeliculas]= useState([])
     const [cargando, setCargando]=useState(true);
-    const{id} = useParams();
+    let {id} = useParams();
+    console.log(id);
 
     const peliculaDetalle = peliculas.filter(peli => peli.id==id);
+    console.log(peliculaDetalle);
         
             
             
@@ -29,7 +31,7 @@ export const ItemDetailContainer = ({greetings})=>{
             });
 
         
-    },[id])
+    },[])
 
     return(
 
@@ -38,7 +40,10 @@ export const ItemDetailContainer = ({greetings})=>{
                 <h1>Cargando...</h1>
             ) : (
                <>
-               <ItemDetail pelis={peliculaDetalle} />
+               {peliculaDetalle.map((peli)=>(
+                   <ItemDetail{...peli} key={peli.id}/>
+                ))}
+               
                 
                </>
 
