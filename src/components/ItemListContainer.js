@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { traerPelis } from "../mock/pelis";
-import ItemCount from "./ItemCount";
 import ItemList from "./ItemList";
 
 
@@ -9,6 +8,10 @@ const ItemListContainer = ({greetings})=>{
 
     const [peliculas, setPeliculas]=useState([]);
     const [cargando, setCargando]=useState(true);
+
+    const enCartelera = peliculas.filter(peli => peli.tipo =='en cartelera');
+    const proximamente = peliculas.filter(peli => peli.tipo =='proximamente');
+    const clasica = peliculas.filter(peli => peli.tipo =='clasica');
 
     useEffect(()=>{
         traerPelis
@@ -35,7 +38,9 @@ const ItemListContainer = ({greetings})=>{
             ) : (
                <>
                 <h1>{greetings}</h1>
-                <ItemList pelis={peliculas} />
+                <ItemList pelis={enCartelera} />
+                <ItemList pelis={proximamente} />
+                <ItemList pelis={clasica} />
                
                </>
 

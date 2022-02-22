@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
 
-const Item = ({title, price, img})=>{
+const Item = ({id, title, price, img})=>{
 
     return (
         <div
@@ -18,12 +19,19 @@ const Item = ({title, price, img})=>{
             }}
         >
             <div>
+                <br/>
 
             <img ClassName ='imagen' src={img} width='200px' alt={title}/>
             </div>
             <h2>{title}</h2>
             <h3>Valor Ticket: $ {price}</h3>
             <ItemCount stock="5" initial="1"/>
+            <Link to={`/pelicula/${id}`}>
+
+            <button>ver detalles</button>
+            </Link>
+            
+            
         </div>
     );
 };

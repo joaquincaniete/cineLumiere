@@ -13,6 +13,7 @@ const ItemList = ({pelis})=>{
             >
                 {pelis.map((peli)=>(
                     <Item{...peli} key={peli.id}/>
+                    
                 ))}
             </div>
     );
