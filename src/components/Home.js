@@ -1,5 +1,11 @@
+import react from "react";
+import ItemListContainer from "./ItemListContainer";
+
 export const Home = ()=>{
     return (
-        <p>Home</p>
+        <div>
+
+        <ItemListContainer greetings="Bienvenido a nuestro E-commerce"/>
+        </div>
     )
 }

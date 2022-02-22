@@ -6,17 +6,23 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { itemDetail } from './components/ItemDetail';
 import { Home } from './components/Home';
 import {ItemDetailContainer} from  './components/ItemDetailContainer'
+import Error404 from './components/Error404';
+import Footer from './components/Footer';
+
 
 function App() {
   return (
     <div className="App">
         <BrowserRouter>
         <NavBar/>
-          <ItemListContainer greetings="Bienvenido a nuestro E-commerce"/>
+          
           <Routes>
             <Route exact path='/' element={<Home/>}/>
             <Route exact path='/pelicula/:id' element={<ItemDetailContainer/>}/>
+            <Route path='*' element= {<Error404/>}/>
           </Routes>
+
+          <Footer/>
         </BrowserRouter>
         
     </div>
