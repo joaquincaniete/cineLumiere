@@ -8,6 +8,10 @@ import { Home } from './components/Home';
 import {ItemDetailContainer} from  './components/ItemDetailContainer'
 import Error404 from './components/Error404';
 import Footer from './components/Footer';
+import { ItemCategoryContainer } from './components/ItemCategoryContainer';
+import Login from './components/Login';
+
+
 
 
 function App() {
@@ -19,6 +23,8 @@ function App() {
           <Routes>
             <Route exact path='/' element={<Home/>}/>
             <Route exact path='/pelicula/:id' element={<ItemDetailContainer/>}/>
+            <Route exact path='/category/:tipo' element ={<ItemCategoryContainer/>}/>
+            <Route exact path='/login' element={<Login/>}/>
             <Route path='*' element= {<Error404/>}/>
           </Routes>
 

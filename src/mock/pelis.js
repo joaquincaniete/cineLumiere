@@ -16,7 +16,7 @@ export const pelis = [
         price: 500,
         img: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5IEW2ZGKBHrZ1lWZywRVs3pFVyy.jpg',
         category: 'Terror/Suspense',
-        tipo: 'en cartelera',
+        tipo: 'estreno',
 
     },
     {
@@ -25,7 +25,7 @@ export const pelis = [
         price: 500,
         img: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bv9dy8mnwftdY2j6gG39gCfSFpV.jpg',
         category: 'Acción/Suspense',
-        tipo: 'en cartelera',    
+        tipo: 'estreno',    
 
     },
     {
@@ -34,7 +34,7 @@ export const pelis = [
         price: 500,
         img: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5ytfx0deVe07GSjNvJkiMAH8fob.jpg',
         category: 'Misterio/Crimen/Drama',
-        tipo: 'en cartelera',
+        tipo: 'estreno',
 
     },
     {
