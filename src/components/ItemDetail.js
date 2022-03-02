@@ -5,7 +5,7 @@ import ItemCount from "./ItemCount";
     
 function ItemDetail (props) {
 
-    const{id, price, title, img, agregarAlCarrito}=props;
+    const{id, price, title, img, agregarAlCarrito, onAdd}=props;
     
 
     /*const agregarAlCarrito = (id, title, count)=>{
@@ -20,7 +20,7 @@ function ItemDetail (props) {
                 <h3>Resumen de la trama:</h3>     
                 <img className="imagen" src={img} width = '500px'/>
                 <h3>Valor Ticket: $ {price}</h3>
-                <ItemCount stock="5" initial="1" id={id} title={title} agregarAlCarrito={agregarAlCarrito}/>
+                <ItemCount stock="5" initial="1" id={id} title={title} agregarAlCarrito={agregarAlCarrito} onAdd={onAdd}/>
 
                 <h3>Ver Trailer</h3>
             

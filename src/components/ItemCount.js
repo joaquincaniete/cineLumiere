@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { Link } from "react-router-dom";
 
 export default function ItemCount(props){
 
@@ -8,6 +9,8 @@ export default function ItemCount(props){
     const inicial = parseInt(initial);
 
     const [count, setCount] = useState(inicial);
+
+    
 
     
     
@@ -28,7 +31,17 @@ export default function ItemCount(props){
       <p>{count}</p>
             <button onClick={restarItem}>-</button>
       <button onClick={sumarItem}>+</button><br/>
-      <button id="largeButton" onClick={()=>agregarAlCarrito(id, title, count)}>Agregar al Carrito</button>
+      <>
+      {
+        onAdd == true ? (
+        <Link  to="/cart">
+        <button id="largeButton">Ir Al Carrito</button>
+        </Link>) : (<button id="largeButton" onClick={()=>agregarAlCarrito(id, title, count)}>Agregar al Carrito</button>
+
+        )
+      }
+      
+      </>
         </div>
 
     )

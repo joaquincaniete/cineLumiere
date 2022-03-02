@@ -7,40 +7,37 @@ import { pelis, traerPeli, traerPelis } from "../mock/pelis";
 export const ItemDetailContainer = ()=>{
 
 
+    let carrito = JSON.parse(localStorage.getItem("carrito"))||[];
     
 
     const [peliculas, setPeliculas]= useState([])
     const [cargando, setCargando]=useState(true);
-    const [pelisCarrito, setPelisCarrito] = useState();
+    const [pelisCarrito, setPelisCarrito] = useState([]);
     
     let {id} = useParams();
     console.log(id);
+    
 
-    const peliculaDetalle = peliculas.filter(peli => peli.id==id);
+    const peliculaDetalle = peliculas.filter(peli => peli.id== id);
     console.log(peliculaDetalle);
 
-    useEffect(()=>{
-        getPelisCarrito();
+    const onAdd = carrito.some(peli =>{return peli.id == id});
+    console.log (onAdd);
 
-    })
-
-    const getPelisCarrito = ()=>{
-        
-        /*const carrito = [];*/
-        /*globalThis.carrito = JSON.parse(localStorage.getItem("carrito"))||[];*/
-
-        
-    };
 
     function guardarEnLocalStorage (array, nombre){
         localStorage.setItem(nombre, JSON.stringify(array));
 
         
     }
+    function getLocalStorage (){
+        let carrito = JSON.parse(localStorage.getItem("carrito"))||[];
+
+    }
     
     const agregarAlCarrito = (id, title, count)=>{
 
-        let carrito = JSON.parse(localStorage.getItem("carrito"))||[];
+        
         let carro = {
             id: id,
             title: title,
@@ -70,7 +67,15 @@ export const ItemDetailContainer = ()=>{
             });
 
         
+    },[]);
+
+    useEffect(()=>{
+        getLocalStorage();
+        setPelisCarrito(carrito);
     },[])
+
+
+
 
     return(
 
@@ -82,7 +87,7 @@ export const ItemDetailContainer = ()=>{
                
                 <>
                {peliculaDetalle.map((peli)=>(
-                   <ItemDetail{...peli} key={peli.id} agregarAlCarrito={agregarAlCarrito} />
+                   <ItemDetail{...peli} key={peli.id} agregarAlCarrito={agregarAlCarrito} onAdd={onAdd} />
                 ))}
                
                 
