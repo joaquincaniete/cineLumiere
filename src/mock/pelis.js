@@ -7,7 +7,7 @@ export const pelis = [
         price: 500,
         img: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/91pB7MxquMeFbeMHamslCKk5wNZ.jpg',
         category: 'Suspense',
-        tipo: 'en cartelera',
+        tipo: 'estreno',
         
     },
     {
@@ -111,10 +111,5 @@ export const traerPelis = new Promise ((resolve, reject)=>{
     }, 4000)
 })
 
-export const traerPeli = new Promise ((resolve, reject)=>{
-    setTimeout(()=>{
-        resolve (pelis.id);
-    }, 2000)
-})
 
 

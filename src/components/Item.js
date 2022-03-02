@@ -25,7 +25,7 @@ const Item = ({id, title, price, img})=>{
             </div>
             <h2>{title}</h2>
             <h3>Valor Ticket: $ {price}</h3>
-            <ItemCount stock="5" initial="1"/>
+            
             <Link to={`/pelicula/${id}`}>
 
             <button>ver detalles</button>
