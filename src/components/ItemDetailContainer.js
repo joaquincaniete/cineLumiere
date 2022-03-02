@@ -11,7 +11,7 @@ export const ItemDetailContainer = ()=>{
 
     const [peliculas, setPeliculas]= useState([])
     const [cargando, setCargando]=useState(true);
-    const [pelisCarrito, setPelisCarrito] = useState([]);
+    const [pelisCarrito, setPelisCarrito] = useState();
     
     let {id} = useParams();
     console.log(id);
@@ -26,7 +26,8 @@ export const ItemDetailContainer = ()=>{
 
     const getPelisCarrito = ()=>{
         
-        const carrito = JSON.parse(localStorage.getItem("carrito"))||[];
+        /*const carrito = [];*/
+        /*globalThis.carrito = JSON.parse(localStorage.getItem("carrito"))||[];*/
 
         
     };
@@ -38,15 +39,17 @@ export const ItemDetailContainer = ()=>{
     }
     
     const agregarAlCarrito = (id, title, count)=>{
-        const carrito = pelisCarrito;
+
+        let carrito = JSON.parse(localStorage.getItem("carrito"))||[];
         let carro = {
             id: id,
             title: title,
             cantidad: count,
         }
+
         carrito.push(carro);
         setPelisCarrito(carrito);
-        guardarEnLocalStorage(pelisCarrito, "carrito");
+        guardarEnLocalStorage(carrito, "carrito");
         console.log(`Se agrego ${title} con el ID: ${id} al carrito`);
         console.log(carrito)
         };
