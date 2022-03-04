@@ -17,6 +17,9 @@ export const ItemDetailContainer = ()=>{
     const [cargando, setCargando]=useState(true);
     const {carrito} = useContext(CartContext);
     
+
+
+    
     
     
     let {id} = useParams();
@@ -26,8 +29,8 @@ export const ItemDetailContainer = ()=>{
     const peliculaDetalle = peliculas.filter(peli => peli.id== id);
     console.log(peliculaDetalle);
 
-    const onAdd = carrito.some(peli =>{return peli.id == id});
-    console.log (onAdd);
+    /*const onAdd = carrito.some(peli =>{return peli.id == id});
+    console.log (onAdd);*/
 
 
     /*function guardarEnLocalStorage (array, nombre){
@@ -89,7 +92,7 @@ export const ItemDetailContainer = ()=>{
                
                 <>
                {peliculaDetalle.map((peli)=>(
-                   <ItemDetail{...peli} key={peli.id} onAdd={onAdd} />
+                   <ItemDetail{...peli} key={peli.id} />
                 ))}
                
                 

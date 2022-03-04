@@ -1,11 +1,16 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import { useCartContext } from "./context/CartContext";
 
 export default function ItemCount(props){
 
   /* export default function ItemCount({stock, initial, onAdd}, addPeliCart, id, title){*/
-    const{stock, initial, onAdd, id, title} = props;
+    const{stock, initial, id, title} = props;
+    const {carrito} = useCartContext();
+
+    const onAdd = carrito.some(peli =>{return peli.id == id});
+    console.log (onAdd)
+
 
     const inicial = parseInt(initial);
 
@@ -13,9 +18,16 @@ export default function ItemCount(props){
 
     const {agregarAlCarrito} = useCartContext();
 
+    
+
     const [enCarrito, setEnCarrito] = useState(onAdd);
 
-    
+    /*const onAdd = carrito.some(peli =>{return peli.id == id});
+    console.log (onAdd);*/
+    /*useEffect(()=>{
+      const onAdd = carrito.some(peli =>{return peli.id == id});
+    console.log (onAdd)
+    })*/
 
     
     
