@@ -1,14 +1,17 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
+import { useCartContext } from "./context/CartContext";
 
 export default function ItemCount(props){
 
   /* export default function ItemCount({stock, initial, onAdd}, addPeliCart, id, title){*/
-    const{stock, initial, onAdd, id, title, agregarAlCarrito} = props;
+    const{stock, initial, onAdd, id, title} = props;
 
     const inicial = parseInt(initial);
 
     const [count, setCount] = useState(inicial);
+
+    const {agregarAlCarrito} = useCartContext();
 
     
 

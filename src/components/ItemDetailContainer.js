@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import {useState, useEffect} from "react";
 import ItemDetail from "../components/ItemDetail";
 import { useParams } from "react-router-dom";
 import { pelis, traerPeli, traerPelis } from "../mock/pelis";
+import { CartContext, useCartContext } from "./context/CartContext";
+
+
 
 export const ItemDetailContainer = ()=>{
 
 
-    let carrito = JSON.parse(localStorage.getItem("carrito"))||[];
+    /*let carrito = JSON.parse(localStorage.getItem("carrito"))||[];*/
     
 
     const [peliculas, setPeliculas]= useState([])
     const [cargando, setCargando]=useState(true);
-    const [pelisCarrito, setPelisCarrito] = useState([]);
+    const {carrito} = useContext(CartContext);
+    
+    
     
     let {id} = useParams();
     console.log(id);
@@ -25,17 +30,17 @@ export const ItemDetailContainer = ()=>{
     console.log (onAdd);
 
 
-    function guardarEnLocalStorage (array, nombre){
+    /*function guardarEnLocalStorage (array, nombre){
         localStorage.setItem(nombre, JSON.stringify(array));
 
         
-    }
-    function getLocalStorage (){
+    }*/
+    /*function getLocalStorage (){
         let carrito = JSON.parse(localStorage.getItem("carrito"))||[];
 
-    }
+    }*/
     
-    const agregarAlCarrito = (id, title, count)=>{
+    /*const agregarAlCarrito = (id, title, count)=>{
 
         
         let carro = {
@@ -49,7 +54,7 @@ export const ItemDetailContainer = ()=>{
         guardarEnLocalStorage(carrito, "carrito");
         console.log(`Se agrego ${title} con el ID: ${id} al carrito`);
         console.log(carrito)
-        };
+        };*/
             
             
     
@@ -69,10 +74,7 @@ export const ItemDetailContainer = ()=>{
         
     },[]);
 
-    useEffect(()=>{
-        getLocalStorage();
-        setPelisCarrito(carrito);
-    },[])
+    
 
 
 
@@ -87,7 +89,7 @@ export const ItemDetailContainer = ()=>{
                
                 <>
                {peliculaDetalle.map((peli)=>(
-                   <ItemDetail{...peli} key={peli.id} agregarAlCarrito={agregarAlCarrito} onAdd={onAdd} />
+                   <ItemDetail{...peli} key={peli.id} onAdd={onAdd} />
                 ))}
                
                 

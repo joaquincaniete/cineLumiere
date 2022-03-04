@@ -11,6 +11,10 @@ import Footer from './components/Footer';
 import { ItemCategoryContainer } from './components/ItemCategoryContainer';
 import Login from './components/Login';
 import Cart from './components/Cart';
+import { CartProvider } from './components/context/CartContext';
+
+
+
 
 
 
@@ -23,20 +27,26 @@ function App() {
 
   return (
     <div className="App">
-        <BrowserRouter>
-        <NavBar/>
-          
-          <Routes>
-            <Route exact path='/' element={<Home/>}/>
-            <Route exact path='/pelicula/:id' element={<ItemDetailContainer/>}/>
-            <Route exact path='/category/:tipo' element ={<ItemCategoryContainer/>}/>
-            <Route exact path='/login' element={<Login/>}/>
-            <Route exact path='/cart' element={<Cart/>}/>
-            <Route path='*' element= {<Error404/>}/>
-          </Routes>
+          <CartProvider>
 
-          <Footer/>
+          <BrowserRouter>
+
+
+            <NavBar/>
+          
+            <Routes>
+              <Route exact path='/' element={<Home/>}/>
+              <Route exact path='/pelicula/:id' element={<ItemDetailContainer/>}/>
+              <Route exact path='/category/:tipo' element ={<ItemCategoryContainer/>}/>
+              <Route exact path='/login' element={<Login/>}/>
+              <Route exact path='/cart' element={<Cart/>}/>
+              <Route path='*' element= {<Error404/>}/>
+            </Routes>
+
+            <Footer/>
         </BrowserRouter>
+          </CartProvider>
+        
         
     </div>
    
