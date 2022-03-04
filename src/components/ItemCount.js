@@ -13,6 +13,8 @@ export default function ItemCount(props){
 
     const {agregarAlCarrito} = useCartContext();
 
+    const [enCarrito, setEnCarrito] = useState(onAdd);
+
     
 
     
@@ -27,6 +29,11 @@ export default function ItemCount(props){
         stock > 0 ? console.log("agregado") : console.log ("no hay stock");
       };*/
 
+      function agregar (){
+        setEnCarrito (!onAdd);
+        agregarAlCarrito(id, title, count);
+      };
+
     return(
 
         <div className="itemCount">
@@ -36,10 +43,10 @@ export default function ItemCount(props){
       <button onClick={sumarItem}>+</button><br/>
       <>
       {
-        onAdd == true ? (
+        enCarrito == true ? (
         <Link  to="/cart">
         <button id="largeButton">Ir Al Carrito</button>
-        </Link>) : (<button id="largeButton" onClick={()=>agregarAlCarrito(id, title, count)}>Agregar al Carrito</button>
+        </Link>) : (<button id="largeButton" onClick={()=>agregar()}>Agregar al Carrito</button>
 
         )
       }
