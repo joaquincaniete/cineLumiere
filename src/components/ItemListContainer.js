@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { traerPelis } from "../mock/pelis";
 import ItemList from "./ItemList";
+import { Loading } from "./loading/Loading";
 
 const ItemListContainer = ({greetings})=>{
 
@@ -31,8 +32,8 @@ const ItemListContainer = ({greetings})=>{
         
 
         <div className="greetings" style={{backgroundColor: 'red'}}>
-            {cargando ? (
-                <h1>Cargando...</h1>
+            {/*cargando ? (
+                <Loading/>
             ) : (
                <>
                 <h1>{greetings}</h1>
@@ -42,7 +43,17 @@ const ItemListContainer = ({greetings})=>{
                
                </>
 
-            )}
+            )*/
+            <>
+            <Loading cargando={cargando}/>
+            <ItemList pelis={enCartelera} />
+            <ItemList pelis={proximamente} />
+            <ItemList pelis={clasica} />
+            </>
+
+            
+            
+            }
         </div>
         
 

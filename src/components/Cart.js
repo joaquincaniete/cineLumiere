@@ -1,5 +1,25 @@
-import react from "react";
+
+import { CartProvider, useCartContext } from "./context/CartContext";
+import ItemCarrito from "../components/ItemCarrito";
 
 export default function Cart (){
-    return "Cart";
+    const {cartPelis} = useCartContext();
+    console.log(cartPelis);
+    let pelis = cartPelis.flat();
+    console.log(pelis);
+
+
+    return (
+        <>
+
+        <CartProvider>
+
+        
+
+        {pelis.map((peli)=>(
+            <ItemCarrito{...peli} key={peli.id}/>
+            ))}
+        </CartProvider>
+            </>
+    );
 }

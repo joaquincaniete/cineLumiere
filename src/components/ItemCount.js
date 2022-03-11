@@ -5,10 +5,10 @@ import { useCartContext } from "./context/CartContext";
 export default function ItemCount(props){
 
   /* export default function ItemCount({stock, initial, onAdd}, addPeliCart, id, title){*/
-    const{stock, initial, id, title} = props;
-    const {carrito} = useCartContext();
+    const{stock, initial, id, title, img} = props;
+    const {cartPelis} = useCartContext();
 
-    const onAdd = carrito.some(peli =>{return peli.id == id});
+    const onAdd = cartPelis.some(peli =>{return peli.id == id});
     console.log (onAdd)
 
 
@@ -43,7 +43,7 @@ export default function ItemCount(props){
 
       function agregar (){
         setEnCarrito (!onAdd);
-        agregarAlCarrito(id, title, count);
+        agregarAlCarrito(id, title, count, img);
       };
 
     return(

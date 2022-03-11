@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
+import { CartProvider, useCartContext } from "./context/CartContext";
+
+
 
 const NavBar = ()=>{
+
+    
+    
     return(
         <header id="header">
             <nav className="nav">
@@ -31,7 +37,10 @@ const NavBar = ()=>{
                         
                     </li>
                 </ul>
-                    <CartWidget />
+                    
+                    <CartProvider>
+                    <CartWidget/>
+                    </CartProvider>
                     
                     
                 
