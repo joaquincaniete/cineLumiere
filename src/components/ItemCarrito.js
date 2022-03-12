@@ -26,7 +26,7 @@ const ItemCarrito = ({id, title, price, img, cantidad})=>{
             <h2>{title}</h2>
             <h3>Valor Ticket: $ {price}</h3>
             <h3>Cantidad {cantidad}</h3>
-            <button onClick={eliminarItem (id)}></button>
+            <button onClick={()=>eliminarItem(id)}></button>
             
             
             

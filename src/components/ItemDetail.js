@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Item from "../components/Item";
+
+
 import { CartProvider } from "./context/CartContext";
 import ItemCount from "./ItemCount";
 
@@ -10,6 +10,7 @@ import ItemCount from "./ItemCount";
 function ItemDetail (props) {
 
     const{id, price, title, img, trailer, onAdd}=props;
+
     
 
     /*const agregarAlCarrito = (id, title, count)=>{

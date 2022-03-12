@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+//import React, { useState } from "react";
 import carrito from '../assets/img/cart.svg';
 import { Link } from "react-router-dom";
 import { useCartContext } from "./context/CartContext";
@@ -27,7 +27,8 @@ const CartWidget=()=>{
             </li>
             <li>
                 <>
-                <h3 className="nroItem">{cartItems}</h3>
+                {cartItems > 0 ? <h3 className="nroItem">{cartItems}</h3> : null}
+                
                 </>
             </li>
             </ul>

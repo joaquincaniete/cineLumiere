@@ -1,4 +1,4 @@
-import React, {createContext, useState, useContext} from "react";
+import React, {createContext, useState, useContext, useEffect} from "react";
 
 export const CartContext  = createContext();
 
@@ -7,15 +7,25 @@ export const useCartContext = ()=> useContext(CartContext);
 export const CartProvider =({children})=>{
 
     let carrito = JSON.parse(localStorage.getItem("carrito"))||[];
-    let numero = JSON.parse(localStorage.getItem("nro"))||[];
+    let numero = JSON.parse(localStorage.getItem("nro"))||0;
 
-    const [cartPelis, setCartPelis] = useState([carrito]);
-    
     const [cartItems, setCartItems] = useState(numero);
-    let productos = 0;
+    let productos=0;
+
+  
+    //const [cartPelis, setCartPelis] = useState([carrito]);
+    
 
     /*const [carrito, setPelisCarrito]= useState([]);*/
     /*const [cartCount, setCartCount]=useState(0);*/
+
+    function getCart (){
+
+        carrito = JSON.parse(localStorage.getItem("carrito"))||[];
+
+        return carrito;
+
+    }
        
 
     function guardarEnLocalStorage (array, nombre){
@@ -30,14 +40,16 @@ export const CartProvider =({children})=>{
             productos += a;
             
         });
-        setCartItems(productos);
+        //setCartItems(0);
+        //setCartItems(productos);
+        //guardarEnLocalStorage(cartItems, "items");
         guardarEnLocalStorage(productos, "nro");
-        guardarEnLocalStorage(cartItems, "items");
         /*let numero = JSON.parse(localStorage.getItem("nro"))||[];*/
         /*return productos;*/
     }
 
     const eliminarItem = (id)=>{
+        console.log('item eliminado');
         
     }
     
@@ -61,21 +73,21 @@ export const CartProvider =({children})=>{
         carrito.push(carro);
         
         guardarEnLocalStorage(carrito, "carrito");
-
-        setCartPelis([]);
-        setCartPelis(carrito);
-
-        guardarEnLocalStorage(cartPelis, "cartpelis");
         productosEnCarrito();
+
+        //setCartPelis([]);
+        //setCartPelis(carrito);
+        //guardarEnLocalStorage(cartPelis, "cartpelis");
+        
         console.log(`productos en carrito ${productos}`);
         console.log(`Se agrego ${title} con el ID: ${id} al carrito`);
-        console.log(`numero ${numero}`)
-        console.log(`cartPelis ${cartPelis}`)
+        console.log(`numero ${numero}`);
+        console.log(`items ${cartItems}`);
         };
 
         return(
 
-            <CartContext.Provider value={{cartPelis, agregarAlCarrito, cartItems}}>
+            <CartContext.Provider value={{eliminarItem, agregarAlCarrito, guardarEnLocalStorage, setCartItems, cartItems, getCart}}>
                 {children}
                 
             </CartContext.Provider>

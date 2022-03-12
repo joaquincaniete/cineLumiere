@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { useCartContext } from "./context/CartContext";
 
@@ -6,7 +6,9 @@ export default function ItemCount(props){
 
   /* export default function ItemCount({stock, initial, onAdd}, addPeliCart, id, title){*/
     const{stock, initial, id, title, img} = props;
-    const {cartPelis} = useCartContext();
+    const {getCart} = useCartContext();
+
+    let cartPelis = getCart();
 
     const onAdd = cartPelis.some(peli =>{return peli.id == id});
     console.log (onAdd)
@@ -17,6 +19,8 @@ export default function ItemCount(props){
     const [count, setCount] = useState(inicial);
 
     const {agregarAlCarrito} = useCartContext();
+
+    const {cartItems, setCartItems, guardarEnLocalStorage} = useCartContext();
 
     
 
@@ -42,8 +46,13 @@ export default function ItemCount(props){
       };*/
 
       function agregar (){
+        console.log("cartItems" + cartItems);
+        setCartItems(cartItems + count); 
+        console.log("cartItems" + cartItems);
+        guardarEnLocalStorage(cartItems, "items")       
         setEnCarrito (!onAdd);
         agregarAlCarrito(id, title, count, img);
+
       };
 
     return(
