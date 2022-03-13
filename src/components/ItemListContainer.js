@@ -1,5 +1,7 @@
+import { collection, getDocs } from "firebase/firestore";
+import db from "../services/firebase";
 import React, { useState, useEffect } from "react";
-import { traerPelis } from "../mock/pelis";
+//import { traerPelis } from "../mock/pelis";
 import ItemList from "./ItemList";
 import { Loading } from "./loading/Loading";
 
@@ -12,7 +14,7 @@ const ItemListContainer = ({greetings})=>{
     const proximamente = peliculas.filter(peli => peli.tipo =='proximamente');
     const clasica = peliculas.filter(peli => peli.tipo =='clasica');
 
-    useEffect(()=>{
+    /*useEffect(()=>{
         traerPelis
             .then((res)=>{
                 setPeliculas(res);
@@ -24,7 +26,30 @@ const ItemListContainer = ({greetings})=>{
                 setCargando(false);
             });
 
-    }, []);
+    }, []);*/
+
+    
+
+    const getData = async ()=>{
+        try {
+            const itemsCollection = collection (db,"Items")
+            const coleccion = await getDocs(itemsCollection)
+            const result = coleccion.docs.map((doc)=>doc = {id:doc.id, ...doc.data()})
+            setPeliculas(result)
+           
+            setCargando(false);
+            
+            
+        } catch (error) {
+            console.warn("error",error)
+        }
+    }
+
+    useEffect(()=>{
+        getData()
+    },[])
+
+    console.log("Peliculas:", peliculas);
 
 
     return(

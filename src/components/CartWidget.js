@@ -10,7 +10,7 @@ const CartWidget=()=>{
     const {cartItems} = useCartContext();
     const [num, setNum]= useState (cartItems);
 
-    useEffect ( function(){
+    useEffect (()=>{
         setNum(cartItems);
     },[cartItems]);
     /*let numero = JSON.parse(localStorage.getItem("nro"))||[];  */ 

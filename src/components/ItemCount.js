@@ -4,7 +4,6 @@ import { CartContext, useCartContext } from "./context/CartContext";
 
 export default function ItemCount(props){
 
-  /* export default function ItemCount({stock, initial, onAdd}, addPeliCart, id, title){*/
     const{stock, initial, id, title, img, price} = props;
     const {cart} = useContext(CartContext);
 
@@ -20,36 +19,19 @@ export default function ItemCount(props){
 
     const {agregarAlCarrito} = useCartContext();
 
-    const {setCartItems, guardarEnLocalStorage} = useCartContext();
-
-    
-
+  
     const [enCarrito, setEnCarrito] = useState(onAdd);
 
-    /*const onAdd = carrito.some(peli =>{return peli.id == id});
-    console.log (onAdd);*/
-    /*useEffect(()=>{
-      const onAdd = carrito.some(peli =>{return peli.id == id});
-    console.log (onAdd)
-    })*/
-
-    
-    
     const sumarItem = () => {
         count < stock ? setCount(count + 1) : setCount(count);
       };
       const restarItem = () => {
         count === inicial ? setCount(count) : setCount(count - 1);
       };
-      /*const agregarAlCarrito=() =>{
-        stock > 0 ? console.log("agregado") : console.log ("no hay stock");
-      };*/
+ 
 
       function agregar (){
 
-        
-        setCartItems(prevCartItems => prevCartItems + count);        
-            
         setEnCarrito (!onAdd);
         agregarAlCarrito(id, title, count, img, price);
 

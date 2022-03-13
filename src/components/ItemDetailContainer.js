@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import db from "../services/firebase";
 import {useState, useEffect} from "react";
 import ItemDetail from "../components/ItemDetail";
 import { useParams } from "react-router-dom";
-import { pelis, traerPeli, traerPelis } from "../mock/pelis";
-import { CartContext, useCartContext } from "./context/CartContext";
+import {traerPelis } from "../mock/pelis";
+import { CartContext} from "./context/CartContext";
 
 
 
@@ -15,11 +17,6 @@ export const ItemDetailContainer = ()=>{
 
     const [peliculas, setPeliculas]= useState([])
     const [cargando, setCargando]=useState(true);
-    const {carrito} = useContext(CartContext);
-    
-
-
-    
     
     
     let {id} = useParams();
@@ -29,39 +26,9 @@ export const ItemDetailContainer = ()=>{
     const peliculaDetalle = peliculas.filter(peli => peli.id== id);
     console.log(peliculaDetalle);
 
-    /*const onAdd = carrito.some(peli =>{return peli.id == id});
-    console.log (onAdd);*/
-
-
-    /*function guardarEnLocalStorage (array, nombre){
-        localStorage.setItem(nombre, JSON.stringify(array));
-
-        
-    }*/
-    /*function getLocalStorage (){
-        let carrito = JSON.parse(localStorage.getItem("carrito"))||[];
-
-    }*/
-    
-    /*const agregarAlCarrito = (id, title, count)=>{
-
-        
-        let carro = {
-            id: id,
-            title: title,
-            cantidad: count,
-        }
-
-        carrito.push(carro);
-        setPelisCarrito(carrito);
-        guardarEnLocalStorage(carrito, "carrito");
-        console.log(`Se agrego ${title} con el ID: ${id} al carrito`);
-        console.log(carrito)
-        };*/
-            
-            
-    
-
+   
+   
+    /*
     useEffect(()=>{
         traerPelis
             .then((res)=>{
@@ -75,10 +42,26 @@ export const ItemDetailContainer = ()=>{
             });
 
         
-    },[]);
+    },[]);*/
 
-    
+    const getData = async ()=>{
+        try {
+            const itemsCollection = collection (db,"Items")
+            const coleccion = await getDocs(itemsCollection)
+            const result = coleccion.docs.map((doc)=>doc = {id:doc.id, ...doc.data()})
+            setPeliculas(result)
+           
+            setCargando(false);
+            
+            
+        } catch (error) {
+            console.warn("error",error)
+        }
+    }
 
+    useEffect(()=>{
+        getData()
+    },[])
 
 
 
@@ -97,10 +80,7 @@ export const ItemDetailContainer = ()=>{
                
                 
                </>
-                
-               
-                
-               
+            
 
             )}
        </div>
