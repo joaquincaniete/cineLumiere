@@ -4,7 +4,7 @@ import db from "../services/firebase";
 import {useState, useEffect} from "react";
 import ItemDetail from "../components/ItemDetail";
 import { useParams } from "react-router-dom";
-import {traerPelis } from "../mock/pelis";
+//import {traerPelis } from "../mock/pelis";
 import { CartContext} from "./context/CartContext";
 
 
@@ -21,10 +21,11 @@ export const ItemDetailContainer = ()=>{
     
     let {id} = useParams();
     console.log(id);
-    
+
+    /*   
 
     const peliculaDetalle = peliculas.filter(peli => peli.id== id);
-    console.log(peliculaDetalle);
+    console.log(peliculaDetalle);*/
 
    
    
@@ -49,7 +50,7 @@ export const ItemDetailContainer = ()=>{
             const itemsCollection = collection (db,"Items")
             const coleccion = await getDocs(itemsCollection)
             const result = coleccion.docs.map((doc)=>doc = {id:doc.id, ...doc.data()})
-            setPeliculas(result)
+            setPeliculas(result.filter(peli => peli.id== id))
            
             setCargando(false);
             
@@ -61,7 +62,7 @@ export const ItemDetailContainer = ()=>{
 
     useEffect(()=>{
         getData()
-    },[])
+    },[id])
 
 
 
@@ -74,7 +75,7 @@ export const ItemDetailContainer = ()=>{
                
                
                 <>
-               {peliculaDetalle.map((peli)=>(
+               {peliculas.map((peli)=>(
                    <ItemDetail{...peli} key={peli.id} />
                 ))}
                
