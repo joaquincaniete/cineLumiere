@@ -29,7 +29,7 @@ function ItemDetail (props) {
                 {price > 0 ? 
                 <div>
                 <CartProvider>
-                <ItemCount stock="5" initial="1" id={id} img={img} title={title} onAdd={onAdd}/>
+                <ItemCount stock="5" initial="1" id={id} img={img} title={title} price={price} onAdd={onAdd}/>
                 </CartProvider>
                 
                     <a href={trailer} target = "_blank">Ver Trailer</a> 

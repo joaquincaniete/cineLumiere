@@ -1,4 +1,4 @@
-//import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import carrito from '../assets/img/cart.svg';
 import { Link } from "react-router-dom";
 import { useCartContext } from "./context/CartContext";
@@ -8,6 +8,11 @@ import { useCartContext } from "./context/CartContext";
 const CartWidget=()=>{
 
     const {cartItems} = useCartContext();
+    const [num, setNum]= useState (cartItems);
+
+    useEffect ( function(){
+        setNum(cartItems);
+    },[cartItems]);
     /*let numero = JSON.parse(localStorage.getItem("nro"))||[];  */ 
 
     /*nro [number, setNumber]= useState (numero);*/
@@ -27,7 +32,7 @@ const CartWidget=()=>{
             </li>
             <li>
                 <>
-                {cartItems > 0 ? <h3 className="nroItem">{cartItems}</h3> : null}
+                {num > 0 ? <h3 className="nroItem">{num}</h3> : null}
                 
                 </>
             </li>

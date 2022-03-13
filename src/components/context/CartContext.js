@@ -9,8 +9,18 @@ export const CartProvider =({children})=>{
     let carrito = JSON.parse(localStorage.getItem("carrito"))||[];
     let numero = JSON.parse(localStorage.getItem("nro"))||0;
 
-    const [cartItems, setCartItems] = useState(numero);
-    let productos=0;
+    let [ cart, setCart] = useState([]);
+    
+    let [cartItems, setCartItems] = useState(numero);
+
+    useEffect (function(){
+
+        setCart(carrito);
+        setCartItems (productosEnCarrito());
+
+
+    },[carrito])
+    
 
   
     //const [cartPelis, setCartPelis] = useState([carrito]);
@@ -19,13 +29,13 @@ export const CartProvider =({children})=>{
     /*const [carrito, setPelisCarrito]= useState([]);*/
     /*const [cartCount, setCartCount]=useState(0);*/
 
-    function getCart (){
+    /*function getCart (){
 
         carrito = JSON.parse(localStorage.getItem("carrito"))||[];
 
         return carrito;
 
-    }
+    }*/
        
 
     function guardarEnLocalStorage (array, nombre){
@@ -33,29 +43,38 @@ export const CartProvider =({children})=>{
     }
     
     const productosEnCarrito = ()=>{
+        
+        let productos=0;
         let cantidades = carrito.map(x => x.cantidad)
         
         cantidades.forEach(function(a){
-
-            productos += a;
-            
+            productos += a;            
         });
-        //setCartItems(0);
-        //setCartItems(productos);
-        //guardarEnLocalStorage(cartItems, "items");
+        
         guardarEnLocalStorage(productos, "nro");
-        /*let numero = JSON.parse(localStorage.getItem("nro"))||[];*/
-        /*return productos;*/
+
+        return productos;
+
+        
+                
+        
     }
 
     const eliminarItem = (id)=>{
-        console.log('item eliminado');
+
+        const index = carrito.findIndex((peli)=> peli.id === id);
+        carrito.splice(index,1);
+        guardarEnLocalStorage(carrito, "carrito");
+        //productosEnCarrito();
+
+
+        console.log('item eliminado' + index);
         
     }
     
     
 
-    const agregarAlCarrito = (id, title, count, img)=>{
+    const agregarAlCarrito = (id, title, count, img, price)=>{
 
         /*function guardarEnLocalStorage (array, nombre){
             localStorage.setItem(nombre, JSON.stringify(array));               
@@ -66,20 +85,19 @@ export const CartProvider =({children})=>{
             id: id,
             title: title,
             cantidad: count,
+            price: price,
             img: img,
         }
 
         
         carrito.push(carro);
-        
         guardarEnLocalStorage(carrito, "carrito");
         productosEnCarrito();
+        //setCart(carrito);
 
-        //setCartPelis([]);
-        //setCartPelis(carrito);
-        //guardarEnLocalStorage(cartPelis, "cartpelis");
         
-        console.log(`productos en carrito ${productos}`);
+        
+        
         console.log(`Se agrego ${title} con el ID: ${id} al carrito`);
         console.log(`numero ${numero}`);
         console.log(`items ${cartItems}`);
@@ -87,7 +105,7 @@ export const CartProvider =({children})=>{
 
         return(
 
-            <CartContext.Provider value={{eliminarItem, agregarAlCarrito, guardarEnLocalStorage, setCartItems, cartItems, getCart}}>
+            <CartContext.Provider value={{eliminarItem, agregarAlCarrito, guardarEnLocalStorage, setCartItems, cartItems, cart}}>
                 {children}
                 
             </CartContext.Provider>
