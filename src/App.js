@@ -14,16 +14,7 @@ import Cart from './components/Cart';
 import { CartProvider } from './components/context/CartContext';
 
 
-
-
-
-
-
 function App() {
-
-
-
-
 
   return (
     <div className="App">
@@ -31,9 +22,8 @@ function App() {
 
           <BrowserRouter>
 
-
             <NavBar/>
-          
+
             <Routes>
               <Route exact path='/' element={<Home/>}/>
               <Route exact path='/pelicula/:id' element={<ItemDetailContainer/>}/>
@@ -46,7 +36,6 @@ function App() {
             <Footer/>
         </BrowserRouter>
           </CartProvider>
-        
         
     </div>
    

@@ -1,8 +1,9 @@
 
 
 // Import the functions you need from the SDKs you need
+import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
-import {getFirestore} from "firebase/firestore"
+import {addDoc, collection, getFirestore, Timestamp} from "firebase/firestore"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,5 +20,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+//generar orden
+export const generarOrden = async (orden) =>{
+  const newOrden = addDoc(collection(db, "ordenes"),{
+    ...orden,
+    date: Timestamp.fromDate(new Date()), 
+  })
+  return newOrden;
+}
 
 export default db;
