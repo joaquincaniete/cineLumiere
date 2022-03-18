@@ -19,7 +19,7 @@ export default function Cart (){
     console.log(cartPelis);
     let pelis = cartPelis.flat();
     console.log(pelis);*/
-    const {cart} = useContext(CartContext);
+    const {cart, vaciarCarrito} = useContext(CartContext);
     const [comprador, setComprador] = useState(compradorInicial)
     let pelis = cart;
 
@@ -65,6 +65,8 @@ export default function Cart (){
                 <ItemCarrito{...peli} key={peli.id}/>
                 ))}
                 <br/>
+                
+                <button onClick={()=>vaciarCarrito()}>Vaciar Carrito</button>
                 Total: $ ${total}
 
                 <h2>Completa tus datos para finalizar la compra</h2>

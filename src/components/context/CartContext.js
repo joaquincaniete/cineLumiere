@@ -45,6 +45,13 @@ export const CartProvider =({children})=>{
         console.log('item eliminado' + index);           
         
     }
+
+    const vaciarCarrito = ()=>{
+        let carrito = [];
+        guardarEnLocalStorage(carrito, "carrito");
+        productosEnCarrito();
+
+    }
     
     
 
@@ -71,7 +78,7 @@ export const CartProvider =({children})=>{
 
         return(
 
-            <CartContext.Provider value={{eliminarItem, agregarAlCarrito, cartItems, cart}}>
+            <CartContext.Provider value={{eliminarItem, agregarAlCarrito, cartItems, cart, vaciarCarrito}}>
                 {children}
                 
             </CartContext.Provider>
