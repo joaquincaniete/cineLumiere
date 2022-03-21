@@ -3,7 +3,7 @@ import React, {useContext, useState} from "react";
 import { CartContext, CartProvider } from "./context/CartContext";
 import ItemCarrito from "../components/ItemCarrito";
 import { Link } from "react-router-dom";
-import { generarOrden } from "../services/firebase";
+import { actualizarStock, generarOrden } from "../services/firebase";
 
 const compradorInicial ={
     name:"",
@@ -39,6 +39,12 @@ export default function Cart (){
                 .then((res)=>{
                     alert('tu nro de orden es: ${res.id}')
                 })
+           .then(()=> pelis.forEach(item => actualizarStock(item.id, item.cantidad)))
+           .then(()=> vaciarCarrito())
+           .catch(
+               (err)=> alert('Hubo un error, por favor intentalo nuevamente... gracias')
+           )
+                
         } else {
             alert ("Por favor revisa los datos del formulario")
         }
