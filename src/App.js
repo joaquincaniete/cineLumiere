@@ -12,11 +12,14 @@ import { ItemCategoryContainer } from './components/ItemCategoryContainer';
 import Login from './components/Login';
 import Cart from './components/Cart';
 import { CartProvider } from './components/context/CartContext';
+import {Layout} from "antd";
 
 
 function App() {
 
   return (
+    <Layout>
+
     <div className="App">
           <CartProvider>
 
@@ -39,6 +42,7 @@ function App() {
         
     </div>
    
+    </Layout>
   );
 }
 
