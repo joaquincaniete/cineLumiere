@@ -56,7 +56,7 @@ const ItemListContainer = ({greetings})=>{
 
         
 
-        <div className="greetings" style={{backgroundColor: 'red'}}>
+        <div className="greetings" >
             {/*cargando ? (
                 <Loading/>
             ) : (

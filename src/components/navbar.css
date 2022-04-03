@@ -1,0 +1,7 @@
+.logo{
+
+    display: flex;
+    align-content: flex-start;  
+    align-items: flex-end;  
+    height: 40px;
+}

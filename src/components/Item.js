@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
+import { Button } from "antd";
+import 'antd/dist/antd.css'
 
 const Item = ({id, title, price, img})=>{
 
@@ -16,6 +18,7 @@ const Item = ({id, title, price, img})=>{
                 flexDirection: 'column',
                 border: '1px solid gray',
                 margin: '10px',
+                paddingBottom: '10px',
             }}
         >
             <div>
@@ -28,7 +31,7 @@ const Item = ({id, title, price, img})=>{
             
             <Link to={`/pelicula/${id}`}>
 
-            <button>ver detalles</button>
+            <Button shape="round" size="small">Ver detalles</Button>
             </Link>
             
             

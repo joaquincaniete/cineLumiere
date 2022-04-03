@@ -4,6 +4,9 @@ import { CartContext, CartProvider } from "./context/CartContext";
 import ItemCarrito from "../components/ItemCarrito";
 import { Link } from "react-router-dom";
 import { actualizarStock, generarOrden } from "../services/firebase";
+import swal from "sweetalert";
+import { Col, Row } from "antd";
+
 
 const compradorInicial ={
     name:"",
@@ -37,16 +40,19 @@ export default function Cart (){
         if(comprador.name != "" && comprador.phone != "" && comprador.email != ""){
             generarOrden(orden)
                 .then((res)=>{
-                    alert('tu nro de orden es: ${res.id}')
+                    swal("Orden Completa",`tu nro de orden es: ${res.id}`, "success", {button:"Ok!",});
+                    //alert('tu nro de orden es: ${res.id}')
                 })
            .then(()=> pelis.forEach(item => actualizarStock(item.id, item.cantidad)))
            .then(()=> vaciarCarrito())
            .catch(
-               (err)=> alert('Hubo un error, por favor intentalo nuevamente... gracias')
+               (err)=> swal("Error", "Hubo un error, por favor intente nuevamente... gracias", "error")
+               
            )
                 
         } else {
-            alert ("Por favor revisa los datos del formulario")
+            swal("Atención", "Por Favor revisa los datos del formulario, podria haber uno o mas vacios...","info")
+            
         }
     }
 
@@ -60,51 +66,64 @@ export default function Cart (){
 
 
     return (
-        <>
+        
 
         <CartProvider>
         
+            
         {pelis.length > 0 ?
             (
-                <div>
+                <>
+                <Row>
+                <Col span={6} offset={3}>
+
+                
                 {pelis.map((peli)=>(
-                <ItemCarrito{...peli} key={peli.id}/>
-                ))}
+                    <ItemCarrito{...peli} key={peli.id}/>
+                    ))}
                 <br/>
+                </Col>
+                <Col span={6} offset={3}>
                 
                 <button onClick={()=>vaciarCarrito()}>Vaciar Carrito</button>
-                Total: $ ${total}
+                <br/>
+                Total Compra: $ ${total}
 
                 <h2>Completa tus datos para finalizar la compra</h2>
-                <form
+                <br/>
+                
+                <form className="formulario"
                     onSubmit={handlerSubmit}
                     onChange={handlerChange}>
                         <input type="text"
                                 placeholder="Nombre"
                                 name="name"
                                 value={orden.name}
-                        
-                        />
+                                
+                                /> <br/>
                         <input type="number"
                                 placeholder="Telefono"
                                 name="phone"
                                 value={orden.phone}
-                        
-                        />
+                                
+                                /> <br/>
                         <input type="email"
                                 placeholder="Email"
                                 name="email"
                                 value={orden.email}
-                        
-                        />
+                                
+                                /> <br/>
                         <button> Terminar</button>
 
                 </form>
                 
+            </Col>
                 
                 
-                </div>
                 
+                
+        </Row>
+        </>
             )
         
             
@@ -121,11 +140,11 @@ export default function Cart (){
             <br/><br/>
             </div>
         }
-
         
-
+        
+        
         
         </CartProvider>
-            </>
+        
     );
 }

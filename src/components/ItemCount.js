@@ -41,9 +41,9 @@ export default function ItemCount(props){
 
         <div className="itemCount">
 
-      <p>{count}</p>
-            <button onClick={restarItem}>-</button>
-      <button onClick={sumarItem}>+</button><br/>
+      <p className="resumen">{count}</p>
+            <button id="numberButton" onClick={restarItem}>-</button>
+      <button id="numberButton" onClick={sumarItem}>+</button><br/>
       <>
       {
         enCarrito == true ? (

@@ -6,6 +6,7 @@ import ItemDetail from "./ItemDetail";
 import { useParams } from "react-router-dom";
 //import { pelis, traerPeli, traerPelis } from "../mock/pelis";
 import ItemList from "./ItemList";
+import { Loading } from "./loading/Loading";
 
 export const ItemCategoryContainer = ()=>{
 
@@ -60,15 +61,15 @@ export const ItemCategoryContainer = ()=>{
     return(
 
         <div>
-            {cargando ? (
-                <h1>Cargando...</h1>
-            ) : (
-               <>
+            <>
+     
+               <Loading cargando={cargando}/>
+
                 <ItemList pelis={peliculas} />
                 
                </>
 
-            )}
+            
         </div>
     )
     

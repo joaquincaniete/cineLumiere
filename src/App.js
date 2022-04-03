@@ -13,6 +13,8 @@ import Login from './components/Login';
 import Cart from './components/Cart';
 import { CartProvider } from './components/context/CartContext';
 import {Layout} from "antd";
+import {Helmet} from "react-helmet";
+
 
 
 function App() {
@@ -21,11 +23,16 @@ function App() {
     <Layout>
 
     <div className="App">
+      <Helmet>
+      <meta charSet="utf-8" />
+                <title>Cine Lumiere</title>
+                <link rel="canonical" href="http://cinelumiere.com" />
+      </Helmet>
           <CartProvider>
 
           <BrowserRouter>
 
-            <NavBar/>
+            <NavBar style={{zIndex: 1}}/>
 
             <Routes>
               <Route exact path='/' element={<Home/>}/>

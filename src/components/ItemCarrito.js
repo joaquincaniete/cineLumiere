@@ -1,3 +1,4 @@
+import { Col, Row } from "antd";
 import { useCartContext } from "../components/context/CartContext";
 
 
@@ -14,24 +15,33 @@ const ItemCarrito = ({id, title, price, img, cantidad})=>{
                 'background-color': '#5e5e5e',
                 'font-size': '10px',            
                 display: 'flex',
-                width: '350px',
-                height: '200px',
+                width: '300px',
+                height: '150px',
                 flexDirection: 'column',
                 border: '1px solid gray',
                 margin: '10px',
             }}
         >
-            <div>
-                <br/>
+            
+                
+            <>
+            <Row>
+            <Col span={4} offset={1}>
 
             <img className ='imagen' src={img} height='100px' alt={title}/>
-            </div>
+            
+            </Col>
+            <Col span={8} offset={3}>
+            
             <h2>{title}</h2>
             <h3>Valor Ticket: $ {price}</h3>
             <h3>Cantidad {cantidad}</h3>
             <button onClick={()=>eliminarItem(id)}>Eliminar Item</button>
+            </Col>
             
             
+            </Row>
+           </> 
             
             
         </div>

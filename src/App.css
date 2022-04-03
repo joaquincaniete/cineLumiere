@@ -19,9 +19,9 @@ header {
   
   height: 100px;
   width: 100%;
-  background: white;
-  border-bottom: 1px solid #ccc;
-  border-top: 5px solid #61dafb;
+  background: whitesmoke;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
   text-decoration: none;
 }
 .nav{
@@ -33,8 +33,9 @@ header {
 
 }
 .logo{
+  align-items: center;
   font-size: 25px;
-  color: black;
+  color:black;
   font-weight: 100;
   
 }
@@ -92,16 +93,21 @@ header {
 }
 
 .itemCount{
+  border-color: rgb(110, 104, 104);
+  border-style: solid;
+  opacity: 1;
   margin-top: 10px;
-  margin-left: 50px;
+  margin-left: 180px;
   margin-right: 50px;
   margin-bottom: 10px;
-  background-color: white;
+  align-items: center;
+  background-color: whitesmoke;
   width: 200px;
   height: 80px;
   border-radius: 5px;
-  box-shadow: 2px;
-    
+  box-shadow: 2px 2px 5px #999;
+
+  
 }
 .itemCount p {
   font-size: xx-large;
@@ -117,8 +123,20 @@ header {
 
   height: auto;
   width: auto;
+  border-color: rgb(110, 104, 104);
+  border-style: solid;
+    
+}
+#numberButton{
+
+  height: auto;
+  width: 50px;
+  border-color: rgb(110, 104, 104);
+  border-style: solid;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px #999;
   
-  
+    
 }
 .imagen{
 
@@ -128,4 +146,73 @@ header {
   justify-content: center;
   
 }
+
+.movie{
+  height: calc(100vh-64px);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  
+}
+.movie_dark div {
+
+
+  padding-top:0;
+  position: relative;
+  
+  top: -100px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  opacity: 0.5;
+
+}
+
+.resumen{
+  z-index: 2;
+  color: #000 !important;
+}
+
+
+.ant-row{
+
+  height: 550px;
+  display: flex;
+  align-items: center;
+}
+
+.movie_poster {
+  padding-top: 0;
+  height: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+}
+.movie_info {
+  display: flex;
+  flex-direction: column;
+  background-color: antiquewhite;
+  border-radius: 10px;
+  opacity: 0.65;
+  z-index: 1;
+  justify-items: center;
+
+}
+.contador{
+  z-index: 2;
+}
+
+.formulario{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.formulario input{
+  display: block;
+  width: 250px;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+
   

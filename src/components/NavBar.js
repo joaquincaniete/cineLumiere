@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
 import { CartProvider, useCartContext } from "./context/CartContext";
+import logo from "../assets/img/cine.png";
+import { Menu } from "antd";
+import "./navbar.css"
 
 
 
@@ -10,10 +13,14 @@ const NavBar = ()=>{
     
     
     return(
-        <header id="header">
+        <header className="menu-top" id="header">
             <nav className="nav">
             <Link style={{textDecoration :'none'}} to ="/">
-            <div  id="logo" className="logo"><strong>Cine Lumiere</strong></div>
+            <div>
+            <img className = "logo" src={logo}/>
+            </div>
+                
+            <div  id="logo" className="logo_letras"><strong>Cine Lumiere</strong></div>
             </Link>
 
                 <ul className="menu">
