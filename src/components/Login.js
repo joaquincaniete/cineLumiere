@@ -1,5 +1,22 @@
-import react from "react";
+import "../components/error404.css"
+import { Link } from "react-router-dom";
+
 
 export default function Login (){
-    return "Login";
+    return (
+        <div className="error404">
+
+            <h1>Login</h1>
+            <h2>Pagina en Construccion</h2>
+            <Link to={"/"}>
+                <h3>Volver al Inicio</h3>
+            </Link>
+
+        </div>
+    );
+
 }
+
+
+
+

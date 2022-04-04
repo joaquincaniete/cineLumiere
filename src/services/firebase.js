@@ -1,10 +1,10 @@
 
 
 // Import the functions you need from the SDKs you need
-import { async } from "@firebase/util";
+
 import { initializeApp } from "firebase/app";
 import {addDoc, collection, doc, getDoc, getFirestore, Timestamp, updateDoc} from "firebase/firestore"
-import Item from "../components/Item";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 

@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+
 import { collection, getDocs } from "firebase/firestore";
 import db from "../services/firebase";
 import {useState, useEffect} from "react";
 import ItemDetail from "../components/ItemDetail";
 import { useParams } from "react-router-dom";
 //import {traerPelis } from "../mock/pelis";
-import { CartContext} from "./context/CartContext";
 
 
 
@@ -50,7 +49,7 @@ export const ItemDetailContainer = ()=>{
             const itemsCollection = collection (db,"Items")
             const coleccion = await getDocs(itemsCollection)
             const result = coleccion.docs.map((doc)=>doc = {id:doc.id, ...doc.data()})
-            setPeliculas(result.filter(peli => peli.id== id))
+            setPeliculas(result.filter(peli => peli.id=== id))
            
             setCargando(false);
             

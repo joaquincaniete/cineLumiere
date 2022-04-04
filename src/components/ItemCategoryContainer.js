@@ -2,7 +2,7 @@ import React from "react";
 import { collection, getDocs } from "firebase/firestore";
 import db from "../services/firebase";
 import {useState, useEffect} from "react";
-import ItemDetail from "./ItemDetail";
+
 import { useParams } from "react-router-dom";
 //import { pelis, traerPeli, traerPelis } from "../mock/pelis";
 import ItemList from "./ItemList";
@@ -26,7 +26,7 @@ export const ItemCategoryContainer = ()=>{
             const itemsCollection = collection (db,"Items")
             const coleccion = await getDocs(itemsCollection)
             const result = coleccion.docs.map((doc)=>doc = {id:doc.id, ...doc.data()})
-            setPeliculas(result.filter(peli => peli.tipo==tipo))
+            setPeliculas(result.filter(peli => peli.tipo===tipo))
            
             setCargando(false);
             

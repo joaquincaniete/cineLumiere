@@ -1,4 +1,4 @@
-import react from "react";
+
 import Item from "./Item";
 
 const ItemList = ({pelis})=>{

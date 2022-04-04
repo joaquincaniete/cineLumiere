@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
-import { CartProvider, useCartContext } from "./context/CartContext";
+import { CartProvider } from "./context/CartContext";
 import logo from "../assets/img/cine.png";
-import { Menu } from "antd";
+
 import "./navbar.css"
 
 
@@ -17,7 +17,7 @@ const NavBar = ()=>{
             <nav className="nav">
             <Link style={{textDecoration :'none'}} to ="/">
             <div>
-            <img className = "logo" src={logo}/>
+            <img className = "logo" src={logo} alt="imagen logo"/>
             </div>
                 
             <div  id="logo" className="logo_letras"><strong>Cine Lumiere</strong></div>

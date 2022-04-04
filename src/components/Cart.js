@@ -37,7 +37,7 @@ export default function Cart (){
 
     const handlerSubmit =(e)=>{
         e.preventDefault()
-        if(comprador.name != "" && comprador.phone != "" && comprador.email != ""){
+        if(comprador.name !== "" && comprador.phone !== "" && comprador.email !== ""){
             generarOrden(orden)
                 .then((res)=>{
                     swal("Orden Completa",`tu nro de orden es: ${res.id}`, "success", {button:"Ok!",});

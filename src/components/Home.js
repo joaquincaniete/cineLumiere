@@ -1,4 +1,4 @@
-import react from "react";
+
 import ItemListContainer from "./ItemListContainer";
 
 export const Home = ()=>{

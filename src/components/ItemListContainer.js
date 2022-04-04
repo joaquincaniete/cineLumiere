@@ -10,9 +10,9 @@ const ItemListContainer = ({greetings})=>{
     const [peliculas, setPeliculas]=useState([]);
     const [cargando, setCargando]=useState(true);
 
-    const enCartelera = peliculas.filter(peli => peli.tipo =='estreno');
-    const proximamente = peliculas.filter(peli => peli.tipo =='proximamente');
-    const clasica = peliculas.filter(peli => peli.tipo =='clasica');
+    const enCartelera = peliculas.filter(peli => peli.tipo ==='estreno');
+    const proximamente = peliculas.filter(peli => peli.tipo ==='proximamente');
+    const clasica = peliculas.filter(peli => peli.tipo ==='clasica');
 
     /*useEffect(()=>{
         traerPelis

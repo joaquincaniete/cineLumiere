@@ -27,7 +27,7 @@ const CartWidget=()=>{
             <li>
                 <Link to="/cart">
 
-                <img className = "imgCarrito" src={carrito}/>
+                <img className = "imgCarrito" src={carrito} alt="imagen del carrito"/>
                 </Link>
             </li>
             <li>

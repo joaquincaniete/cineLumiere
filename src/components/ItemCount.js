@@ -9,7 +9,7 @@ export default function ItemCount(props){
 
     let cartPelis = cart;
 
-    const onAdd = cartPelis.some(peli =>{return peli.id == id});
+    const onAdd = cartPelis.some(peli =>{return peli.id === id});
     console.log (onAdd)
 
 
@@ -46,7 +46,7 @@ export default function ItemCount(props){
       <button id="numberButton" onClick={sumarItem}>+</button><br/>
       <>
       {
-        enCarrito == true ? (
+        enCarrito === true ? (
         <Link  to="/cart">
         <button id="largeButton">Ir Al Carrito</button>
         </Link>) : (<button id="largeButton" onClick={()=>agregar()}>Agregar al Carrito</button>
