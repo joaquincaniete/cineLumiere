@@ -4,6 +4,21 @@
   box-sizing: border-box;
 
 }
+
+.footer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #001529 !important;
+  margin-top: 50px;
+  padding: 15px 0 !important;
+}
+
+p{
+  margin: 0;
+  color: #fff;
+}
+
 body {
   text-align: center;
 
@@ -215,4 +230,26 @@ header {
   margin-left: 20px;
 }
 
-  
+.error404{
+  height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.error404 h1{
+  font-size: 60px;
+}
+.error404 h2{
+  font-size: 40px;
+}
+
+
+.logo{
+
+  display: flex;
+  align-content: flex-start;  
+  align-items: flex-end;  
+  height: 40px;
+}

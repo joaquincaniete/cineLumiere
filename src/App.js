@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Home } from './components/Home';
 import {ItemDetailContainer} from  './components/ItemDetailContainer'
 import Error404 from './components/Error404';
+
 import Footer from './components/Footer';
 import { ItemCategoryContainer } from './components/ItemCategoryContainer';
 import Login from './components/Login';

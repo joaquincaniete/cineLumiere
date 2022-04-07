@@ -1,6 +1,5 @@
 import { Layout } from "antd";
 
-import "./footer.css";
 
 export default function Footer (){
     

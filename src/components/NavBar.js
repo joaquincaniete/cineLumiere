@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import logo from "../assets/img/cine.png";
 
-import "./navbar.css"
+
 
 
 
