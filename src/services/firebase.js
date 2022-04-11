@@ -1,9 +1,15 @@
-
-
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from "firebase/app";
-import {addDoc, collection, doc, getDoc, getFirestore, Timestamp, updateDoc} from "firebase/firestore"
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getFirestore,
+  Timestamp,
+  updateDoc,
+} from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -15,7 +21,7 @@ const firebaseConfig = {
   projectId: "coderhouse-cinelumiere",
   storageBucket: "coderhouse-cinelumiere.appspot.com",
   messagingSenderId: "349033487234",
-  appId: "1:349033487234:web:aeafb0df2dc2f4f682cd9b"
+  appId: "1:349033487234:web:aeafb0df2dc2f4f682cd9b",
 };
 
 // Initialize Firebase
@@ -23,20 +29,20 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 //generar orden
-export const generarOrden = async (orden) =>{
-  const newOrden = addDoc(collection(db, "ordenes"),{
+export const generarOrden = async (orden) => {
+  const newOrden = addDoc(collection(db, "ordenes"), {
     ...orden,
-    date: Timestamp.fromDate(new Date()), 
-  })
+    date: Timestamp.fromDate(new Date()),
+  });
   return newOrden;
-}
+};
 
 // manejo del stock
-export const actualizarStock = async(idPeli, cantidad) => {
-  const item = await getDoc(doc(db, "Items", idPeli))
-  await updateDoc(doc(db, "Items", idPeli),{
-    stock: item.data().stock-cantidad,
-    })
-}
+export const actualizarStock = async (idPeli, cantidad) => {
+  const item = await getDoc(doc(db, "Items", idPeli));
+  await updateDoc(doc(db, "Items", idPeli), {
+    stock: item.data().stock - cantidad,
+  });
+};
 
 export default db;

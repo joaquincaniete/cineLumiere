@@ -1,8 +1,8 @@
 import React from "react";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
-import { CartProvider } from "./context/CartContext";
 import logo from "../assets/img/cine.png";
+import { CartProvider } from "./context/CartContext";
 
 
 
@@ -48,6 +48,7 @@ const NavBar = ()=>{
                     <CartProvider>
                     <CartWidget/>
                     </CartProvider>
+                    
                     
                     
                 

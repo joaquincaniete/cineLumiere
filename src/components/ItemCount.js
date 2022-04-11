@@ -5,7 +5,7 @@ import { CartContext, useCartContext } from "./context/CartContext";
 export default function ItemCount(props){
 
     const{stock, initial, id, title, img, price} = props;
-    const {cart} = useContext(CartContext);
+    const {cart, cartItems, setCartItems} = useContext(CartContext);
 
     let cartPelis = cart;
 
@@ -32,6 +32,7 @@ export default function ItemCount(props){
 
       function agregar (){
 
+        setCartItems(cartItems+count)
         setEnCarrito (!onAdd);
         agregarAlCarrito(id, title, count, img, price);
 

@@ -39,6 +39,11 @@ function ItemDetail (props) {
             </>
         );
     }
+    function PosterMovie(props){
+        const {img} = props;
+        return <div className="movie_poster" style={{backgroundImage: `url(${img})`}}/>;
+
+    }
  
     return(
         
@@ -69,15 +74,15 @@ function ItemDetail (props) {
                 
                 {price > 0 ? 
                 <>
-                <CartProvider>
                 {
                     stock > 0 ? 
+                <CartProvider>
                     <ItemCount className="contador" stock={stock} initial="1" id={id} img={img} title={title} price={price} onAdd={onAdd}/>
+                </CartProvider>
                     : <h5> Lamentablemente estamos sin stock...estamos reponiendo por favor intente nuevamente mañana</h5>
                     
                     
                 }
-                </CartProvider>
 
                     <br/>
 
@@ -100,10 +105,6 @@ function ItemDetail (props) {
     
     )
 
-    function PosterMovie(props){
-        const {img} = props;
-        return <div className="movie_poster" style={{backgroundImage: `url(${img})`}}/>;
 
-    }
 };
 export default ItemDetail;
