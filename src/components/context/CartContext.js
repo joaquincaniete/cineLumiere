@@ -4,34 +4,33 @@ const CartContext = createContext();
 const CartProvider = ({ children }) => {
 
   const [cart, setCart] = useState([]);
+  let carrito = [];
 
-  useEffect (()=>{
-    console.log("cart actualizado "+cart);
+  useEffect(()=>{
+
+    carrito = cart;    
+
   },[cart]);
 
-  function agregarAlCarrito (id, title, count, img, price){
+  function agregarAlCarrito(id, title, count, img, price) {
     let carro = {
-        id: id,
-        title: title,
-        cantidad: count,
-        price: price,
-        img: img,
-      };
-      if (!itemIsInCart(id)) {
-        
-        setCart(...cart, carro);
-        console.log("if");
-        
-        
-      } else {
-        console.log("else");
-        const cartAux = cart;
-        const position = cart.findIndex((item) => item.id === id);
-        cartAux[position].cantidad = cartAux[position].cantidad + count;
-        setCart (cartAux);
-        
-      }
-  };
+      id: id,
+      title: title,
+      cantidad: count,
+      price: price,
+      img: img,
+    };
+    if (!itemIsInCart(id)) {
+      setCart(...cart, carro);
+      console.log("if");
+    } else {
+      console.log("else");
+      const cartAux = cart;
+      const position = cart.findIndex((item) => item.id === id);
+      cartAux[position].cantidad = cartAux[position].cantidad + count;
+      setCart(cartAux);
+    }
+  }
 
   const itemIsInCart = (id) => {
     if (cart.lenght > 0) {
@@ -41,16 +40,24 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  
-
-
+  const getCart = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(carrito);
+    }, 2000);
+  });
 
 
   return (
-    <CartContext.Provider value={{ cart, setCart, agregarAlCarrito }}>
+    <CartContext.Provider value={{ setCart, agregarAlCarrito, getCart }}>
       {children}
     </CartContext.Provider>
   );
-};
+
+
+  
+}
+
+
 export default CartContext;
 export { CartProvider };
+

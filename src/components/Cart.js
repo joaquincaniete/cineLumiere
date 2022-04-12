@@ -6,6 +6,8 @@ import swal from "sweetalert";
 import { Col, Row } from "antd";
 import ItemContext from "./context/ItemContext";
 import CartContext from "./context/CartContext";
+import { Loading } from "./loading/Loading";
+
 
 export default function Cart() {
 const compradorInicial = {
@@ -15,20 +17,10 @@ const compradorInicial = {
 };
 
   const {setItem} = useContext(ItemContext);
-  const {cart, setCart} = useContext(CartContext);
-  const [carrito, setCarrito] = useState ([]);
+  const {getCart, setCart} = useContext(CartContext);
+  const [cargando, setCargando] = useState(true);
   const [comprador, setComprador] = useState(compradorInicial);
-
-  useEffect(()=>{
-
-    setCarrito (cart);
-    console.log("pelis en carrito "+ cart);
-
-
-  });
-  
-  
-
+  const [carrito, setCarrito] = useState([]);
 
   let total = carrito.reduce(
     (acum, item) => acum + item.price * item.cantidad,
@@ -37,7 +29,7 @@ const compradorInicial = {
 
   const orden = {
     comprador,
-    items: cart,
+    items: carrito,
     total,
   };
 
@@ -86,13 +78,30 @@ const compradorInicial = {
     });
   };
 
+  useEffect(()=>{
+
+    getCart
+      .then((resolve)=>{
+        setCarrito(resolve);
+      })
+      .catch((error)=>{
+        console.warn("error", error);
+      })
+      .finally(()=>{
+        setCargando(false);
+      });
+    },[]);
+
+
+
   return (
     
     <div>
+      <Loading cargando={cargando} />
       {carrito.length > 0  ? (
           <Row>
             <Col span={6} offset={3}>
-              {cart.map((peli) => (
+              {carrito.map((peli) => (
                 <ItemCarrito {...peli} key={peli.id} />
               ))}
               <br />
