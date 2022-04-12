@@ -9,7 +9,7 @@ export const ItemDetailContainer = () => {
   const [cargando, setCargando] = useState(true);
 
   let { id } = useParams();
-  
+
   const getData = async () => {
     try {
       const itemsCollection = collection(db, "Items");

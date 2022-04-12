@@ -30,8 +30,6 @@ const ItemListContainer = ({ greetings }) => {
     getData();
   }, []);
 
-  console.log("Peliculas:", peliculas);
-
   return (
     <div className="greetings">
       {

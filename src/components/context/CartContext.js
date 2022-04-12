@@ -2,15 +2,12 @@ import React, { createContext, useState, useEffect } from "react";
 
 const CartContext = createContext();
 const CartProvider = ({ children }) => {
-
   const [cart, setCart] = useState([]);
   let carrito = [];
 
-  useEffect(()=>{
-
-    carrito = cart;    
-
-  },[cart]);
+  useEffect(() => {
+    carrito = cart;
+  }, [cart]);
 
   function agregarAlCarrito(id, title, count, img, price) {
     let carro = {
@@ -22,9 +19,7 @@ const CartProvider = ({ children }) => {
     };
     if (!itemIsInCart(id)) {
       setCart(...cart, carro);
-      console.log("if");
     } else {
-      console.log("else");
       const cartAux = cart;
       const position = cart.findIndex((item) => item.id === id);
       cartAux[position].cantidad = cartAux[position].cantidad + count;
@@ -46,18 +41,12 @@ const CartProvider = ({ children }) => {
     }, 2000);
   });
 
-
   return (
     <CartContext.Provider value={{ setCart, agregarAlCarrito, getCart }}>
       {children}
     </CartContext.Provider>
   );
-
-
-  
-}
-
+};
 
 export default CartContext;
 export { CartProvider };
-

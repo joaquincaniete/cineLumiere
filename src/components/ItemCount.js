@@ -8,7 +8,7 @@ export default function ItemCount(props) {
   const { agregarAlCarrito } = useContext(CartContext);
   const { stock, initial, id, title, img, price } = props;
 
-  let onAdd = false;  
+  let onAdd = false;
   const inicial = parseInt(initial);
   const [count, setCount] = useState(inicial);
   const [enCarrito, setEnCarrito] = useState(onAdd);
@@ -25,8 +25,6 @@ export default function ItemCount(props) {
     setItem(item + count);
     agregarAlCarrito(id, title, count, img, price);
   }
-
-  
 
   return (
     <div className="itemCount">
