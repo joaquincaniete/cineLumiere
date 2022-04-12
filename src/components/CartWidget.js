@@ -1,22 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext} from "react";
 import carrito from "../assets/img/cart.svg";
 import { Link } from "react-router-dom";
-import { CartContext, useCartContext } from "./context/CartContext";
+import ItemContext from "./context/ItemContext";
 
 const CartWidget = () => {
-  const { cartItems } = useContext(CartContext);
 
-  function checkNumber() {
-    if (cartItems > 0) {
-      return (
-        <>
-          <h3 className="nroItem">{cartItems}</h3>;
-        </>
-      );
-    } else {
-      return null;
-    }
-  }
+  const { item } = useContext(ItemContext);
 
   return (
     <div>
@@ -31,11 +20,16 @@ const CartWidget = () => {
           </Link>
         </li>
         <li>
-          <>
-            {useEffect(() => {
-              checkNumber();
-            }, [cartItems])}
-          </>
+         
+        <>
+        {
+          item > 0 ?
+          <h3 className="nroItem">{item}</h3>
+          :
+          null
+        }
+        </>
+          
         </li>
       </ul>
     </div>

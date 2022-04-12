@@ -24,7 +24,7 @@ const Item = ({id, title, price, img})=>{
             <div>
                 <br/>
 
-            <img ClassName ='imagen' src={img} width='200px' alt={title}/>
+            <img src={img} width='200px' alt={title}/>
             </div>
             <h2>{title}</h2>
             <h3>Valor Ticket: $ {price}</h3>

@@ -1,70 +1,56 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
-export const CartContext = createContext();
+const CartContext = createContext();
+const CartProvider = ({ children }) => {
 
-export const useCartContext = () => useContext(CartContext);
+  const [cart, setCart] = useState([]);
 
-export const CartProvider = ({ children }) => {
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  let numero = JSON.parse(localStorage.getItem("nro")) || 0;
+  useEffect (()=>{
+    console.log("cart actualizado "+cart);
+  },[cart]);
 
-  let [cart, setCart] = useState([carrito]);
-  let [cartItems, setCartItems] = useState(numero);
-
-  function guardarEnLocalStorage(array, nombre) {
-    localStorage.setItem(nombre, JSON.stringify(array));
-  }
-
-  const productosEnCarrito = () => {
-    let productos = 0;
-
-    let cantidades = carrito.map((x) => x.cantidad);
-
-    cantidades.forEach(function (a) {
-      productos += a;
-    });
-    numero = productos;
-    guardarEnLocalStorage(productos, "nro");
-    return productos;
-  };
-
-  const eliminarItem = (id) => {
-    const index = carrito.findIndex((peli) => peli.id === id);
-    carrito.splice(index, 1);
-  };
-
-  const vaciarCarrito = () => {
-    let carrito = [];
-    numero = 0;
-    setCartItems(numero);
-  };
-
-  const agregarAlCarrito = (id, title, count, img, price) => {
+  function agregarAlCarrito (id, title, count, img, price){
     let carro = {
-      id: id,
-      title: title,
-      cantidad: count,
-      price: price,
-      img: img,
-    };
-
-    carrito.push(carro);
+        id: id,
+        title: title,
+        cantidad: count,
+        price: price,
+        img: img,
+      };
+      if (!itemIsInCart(id)) {
+        
+        setCart(...cart, carro);
+        console.log("if");
+        
+        
+      } else {
+        console.log("else");
+        const cartAux = cart;
+        const position = cart.findIndex((item) => item.id === id);
+        cartAux[position].cantidad = cartAux[position].cantidad + count;
+        setCart (cartAux);
+        
+      }
   };
+
+  const itemIsInCart = (id) => {
+    if (cart.lenght > 0) {
+      return cart.some((e) => e.id === id);
+    } else {
+      return false;
+    }
+  };
+
+  
+
+
+
 
   return (
-    <CartContext.Provider
-      value={{
-        eliminarItem,
-        agregarAlCarrito,
-        cartItems,
-        setCartItems,
-        cart,
-        carrito,
-        numero,
-        vaciarCarrito,
-      }}
-    >
+    <CartContext.Provider value={{ cart, setCart, agregarAlCarrito }}>
       {children}
     </CartContext.Provider>
   );
 };
+export default CartContext;
+export { CartProvider };

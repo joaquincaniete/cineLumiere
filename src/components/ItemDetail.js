@@ -6,10 +6,6 @@ import { Button, Row, Col} from "antd";
 import { PlayCircleOutlined } from "@ant-design/icons";
 import 'antd/dist/antd.css';
 
-
-
-
-
     
 function ItemDetail (props) {
 
@@ -86,8 +82,6 @@ function ItemDetail (props) {
 
                     <br/>
 
-                    
-                    
                 
                 </>
                     :

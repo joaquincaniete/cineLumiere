@@ -1,4 +1,3 @@
-
 import Item from "./Item";
 
 const ItemList = ({pelis})=>{

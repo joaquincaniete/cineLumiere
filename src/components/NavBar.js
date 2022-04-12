@@ -2,16 +2,10 @@ import React from "react";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
 import logo from "../assets/img/cine.png";
-import { CartProvider } from "./context/CartContext";
-
-
-
 
 
 const NavBar = ()=>{
-
-    
-    
+ 
     return(
         <header className="menu-top" id="header">
             <nav className="nav">
@@ -45,12 +39,9 @@ const NavBar = ()=>{
                     </li>
                 </ul>
                     
-                    <CartProvider>
+                    
                     <CartWidget/>
-                    </CartProvider>
-                    
-                    
-                    
+                   
                 
             </nav>
           

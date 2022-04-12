@@ -1,10 +1,18 @@
 import { Col, Row } from "antd";
-import { useCartContext } from "../components/context/CartContext";
+import { useContext } from "react";
+import CartContext from "./context/CartContext";
+import ItemContext from "./context/ItemContext";
 
 
 const ItemCarrito = ({id, title, price, img, cantidad})=>{
 
-    const {eliminarItem} = useCartContext();
+    const {eliminarItem} = useContext(CartContext);
+    const {item, setItem} = useContext(ItemContext);
+
+    function eliminar (){
+        setItem (item - cantidad);
+        eliminarItem(id);
+    }
 
     
     return (
@@ -36,7 +44,7 @@ const ItemCarrito = ({id, title, price, img, cantidad})=>{
             <h2>{title}</h2>
             <h3>Valor Ticket: $ {price}</h3>
             <h3>Cantidad {cantidad}</h3>
-            <button onClick={()=>eliminarItem(id)}>Eliminar Item</button>
+            <button onClick={()=>eliminar()}>Eliminar Item</button>
             </Col>
             
             

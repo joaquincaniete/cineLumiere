@@ -1,34 +1,50 @@
-import React, { useContext, useMemo, useState } from "react";
-import { CartContext, CartProvider } from "./context/CartContext";
+import React, { useContext, useEffect, useState } from "react";
 import ItemCarrito from "../components/ItemCarrito";
 import { Link } from "react-router-dom";
 import { actualizarStock, generarOrden } from "../services/firebase";
 import swal from "sweetalert";
 import { Col, Row } from "antd";
+import ItemContext from "./context/ItemContext";
+import CartContext from "./context/CartContext";
 
+export default function Cart() {
 const compradorInicial = {
   name: "",
   phone: "",
   email: "",
 };
 
-export default function Cart() {
-  const { carrito, vaciarCarrito } = useContext(CartContext);
+  const {setItem} = useContext(ItemContext);
+  const {cart, setCart} = useContext(CartContext);
+  const [carrito, setCarrito] = useState ([]);
   const [comprador, setComprador] = useState(compradorInicial);
-  let pelis = carrito;
 
+  useEffect(()=>{
+
+    setCarrito (cart);
+    console.log("pelis en carrito "+ cart);
+
+
+  });
+  
   
 
-  let total = pelis.reduce(
+
+  let total = carrito.reduce(
     (acum, item) => acum + item.price * item.cantidad,
     0
   );
 
   const orden = {
     comprador,
-    items: carrito,
+    items: cart,
     total,
   };
+
+  function vaciar (){
+    setItem(0);
+    setCart([]);
+  }
 
   const handlerSubmit = (e) => {
     e.preventDefault();
@@ -44,9 +60,9 @@ export default function Cart() {
           });
         })
         .then(() =>
-          pelis.forEach((item) => actualizarStock(item.id, item.cantidad))
+          carrito.forEach((item) => actualizarStock(item.id, item.cantidad))
         )
-        .then(() => vaciarCarrito())
+        .then(() => vaciar())
         .catch((err) =>
           swal(
             "Error",
@@ -71,18 +87,18 @@ export default function Cart() {
   };
 
   return (
-    <CartProvider>
-      {pelis.length > 0 ? (
-        <>
+    
+    <div>
+      {carrito.length > 0  ? (
           <Row>
             <Col span={6} offset={3}>
-              {pelis.map((peli) => (
+              {cart.map((peli) => (
                 <ItemCarrito {...peli} key={peli.id} />
               ))}
               <br />
             </Col>
             <Col span={6} offset={3}>
-              <button onClick={() => vaciarCarrito()}>Vaciar Carrito</button>
+              <button onClick={() => vaciar()}>Vaciar Carrito</button>
               <br />
               Total Compra: $ ${total}
               <h2>Completa tus datos para finalizar la compra</h2>
@@ -117,8 +133,9 @@ export default function Cart() {
               </form>
             </Col>
           </Row>
-        </>
-      ) : (
+      ) 
+      : 
+      (
         <div>
           <br />
           <br />
@@ -137,6 +154,7 @@ export default function Cart() {
           <br />
         </div>
       )}
-    </CartProvider>
+      </div>
+    
   );
 }
